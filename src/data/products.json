@@ -2,16 +2,55 @@
     {
         "id": 2,
         "title": "cherry",
-        "price": "30 000"
+        "price": "30 000",
+        "branchId": 1
     },
     {
         "id": 3,
         "title": "strawberry",
-        "price": "25 000"
+        "price": "25 000",
+        "branchId": 2
+    },
+    {
+        "id": 4,
+        "title": "kokos",
+        "price": "13 000",
+        "branchId": 4
+    },
+    {
+        "id": 5,
+        "title": "lemon",
+        "price": "4 000",
+        "branchId": 5
+    },
+    {
+        "id": 6,
+        "title": "grapes",
+        "price": "6 000",
+        "branchId": 6
+    },
+    {
+        "id": 7,
+        "title": "water melon",
+        "price": "16 000",
+        "branchId": 3
+    },
+    {
+        "id": 8,
+        "title": "melon",
+        "price": "18 000",
+        "branchId": 1
+    },
+    {
+        "id": 9,
+        "title": "pear",
+        "price": "11 000",
+        "branchId": 5
     },
     {
         "id": 1,
-        "title": "date",
-        "price": "11 000"
+        "title": "Ananas",
+        "price": "21 000",
+        "branchId": 3
     }
 ]

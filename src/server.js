@@ -4,7 +4,6 @@ import jwt from "jsonwebtoken";
 import { readFileCustom } from "./helpers/read-helper.js";
 import { writeFileCustom } from "./helpers/write-helper.js";
 import { sign, verify } from "./helpers/jwt-helper.js";
-import { read } from "fs";
 
 dotenv.config();
 
@@ -22,6 +21,18 @@ const server = createServer((req, res) => {
     try {
       const { id, role } = verify(accessToken);
 
+			const admin = readFileCustom('users.json').find(el => el.id == id)
+
+			if(!admin) {
+				res.writeHead(403, options);
+        res.end(
+          JSON.stringify({
+            message: "Access denied",
+          })
+        );
+        return;
+			}
+
       if (role != "admin") {
         res.writeHead(403, options);
         res.end(
@@ -37,7 +48,7 @@ const server = createServer((req, res) => {
         res.writeHead(401, options);
         res.end(
           JSON.stringify({
-            message: "Access expired",
+            message: "Token expired",
           })
         );
         return;
@@ -46,7 +57,7 @@ const server = createServer((req, res) => {
         res.writeHead(401, options);
         res.end(
           JSON.stringify({
-            message: "Access invalid",
+            message: "Token invalid",
           })
         );
         return;
@@ -534,28 +545,80 @@ const server = createServer((req, res) => {
       checkAdmin(accessToken);
 
       const marketId = urlId;
-
       const allMarkets = readFileCustom("markets.json");
 
-      const foundMarket = allMarkets.find((el) => el.id == marketId);
-      if (!foundMarket) {
+      const foundMarketIndex = allMarkets.findIndex((el) => el.id == marketId);
+      if (foundMarketIndex === -1) {
+        res.writeHead(404, options);
+        res.end(JSON.stringify({ message: "Market not found" }));
+        return;
+      }
+
+      allMarkets.splice(foundMarketIndex, 1);
+      writeFileCustom("markets.json", allMarkets);
+
+      res.writeHead(200, options);
+      res.end(JSON.stringify({ message: "Market successfully deleted" }));
+      return;
+    }
+		if (url == "branches") {
+      const accessToken = req.headers["authorization"];
+      checkAdmin(accessToken);
+
+      const branchId = urlId;
+
+      const allBranches = readFileCustom("branches.json");
+
+      const foundBranches = allBranches.find((el) => el.id == branchId);
+      if (!foundBranches) {
         res.writeHead(401, options);
         res.end(
           JSON.stringify({
-            message: "Market not found",
+            message: "Branch not found",
           })
         );
         return;
       }
 
-      const marketIndex = allMarkets.findIndex((el) => el.id == marketId);
-      allMarkets.splice(marketIndex, 1);
+      const branchIndex = allBranches.findIndex((el) => el.id == branchId);
+      allBranches.splice(branchIndex, 1);
 
-      writeFileCustom("markets.json", allMarkets);
+      writeFileCustom("branches.json", allBranches);
       res.writeHead(200, options);
       res.end(
         JSON.stringify({
-          message: "Market successfully updated",
+          message: "Branch successfully deleted",
+        })
+      );
+      return;
+    }
+		if (url == "products") {
+      const accessToken = req.headers["authorization"];
+      checkAdmin(accessToken);
+
+      const productId = urlId;
+
+      const allProducts = readFileCustom("products.json");
+
+      const foundProducts = allProducts.find((el) => el.id == productId);
+      if (!foundProducts) {
+        res.writeHead(401, options);
+        res.end(
+          JSON.stringify({
+            message: "Product not found",
+          })
+        );
+        return;
+      }
+
+      const productIndex = allProducts.findIndex((el) => el.id == productId);
+      allProducts.splice(productIndex, 1);
+
+      writeFileCustom("products.json", allProducts);
+      res.writeHead(200, options);
+      res.end(
+        JSON.stringify({
+          message: "Product successfully deleted",
         })
       );
       return;

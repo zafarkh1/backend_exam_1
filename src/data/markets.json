@@ -1,6 +1,26 @@
 [
-	{
-		"id": 1,
-		"marketName": "Havas"
-	}
+    {
+        "id": 1,
+        "marketName": "Havas"
+    },
+    {
+        "id": 2,
+        "marketName": "Makro"
+    },
+    {
+        "id": 3,
+        "marketName": "Korzinka"
+    },
+    {
+        "id": 4,
+        "marketName": "B1"
+    },
+    {
+        "id": 5,
+        "marketName": "Chorsu"
+    },
+    {
+        "id": 6,
+        "marketName": "Orom"
+    }
 ]

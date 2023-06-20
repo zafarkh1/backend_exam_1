@@ -28,5 +28,14 @@
         "id": 6,
         "branchName": "Qo'yliq",
         "marketId": 3
+    },
+    {
+        "id": 7,
+        "branchName": "Chorsu"
+    },
+    {
+        "id": 8,
+        "branchName": "Oqtepa",
+        "marketId": 3
     }
 ]
