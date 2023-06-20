@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "branchName": "Uchtepa",
+        "marketId": 1
+    },
+    {
+        "id": 2,
+        "branchName": "Chilonzor",
+        "marketId": 1
+    },
+    {
+        "id": 3,
+        "branchName": "Xalqlar-Do'stligi",
+        "marketId": 2
+    },
+    {
+        "id": 4,
+        "branchName": "Yunusobod",
+        "marketId": 2
+    },
+    {
+        "id": 5,
+        "branchName": "Sergeli",
+        "marketId": 3
+    },
+    {
+        "id": 6,
+        "branchName": "Qo'yliq",
+        "marketId": 3
+    }
+]
